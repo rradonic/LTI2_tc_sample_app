@@ -17,3 +17,7 @@
 /tmp
 .idea
 *.iml
+
+# ignore data dumps
+/data/*.sqlite3
+/db/data.yml
