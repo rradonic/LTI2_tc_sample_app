@@ -1,18 +1,18 @@
 namespace :init_task do
-
   desc "Reseed and backup all--assumes current is canonic"
   task :backup  => :environment do
-    puts 'seed...'
-    system "rake db:seed"
-
-    puts 'dump...'
-    system "rake db:dump"
+    puts "cleaning db tables..."
+    Lti2Tc::DeploymentRequest.delete_all
+    Lti2Tc::ToolConsumerProfile.delete_all
+    Lti2Tc::Resource.delete_all
+    Lti2Tc::Tool.delete_all
+    Lti2Tc::Link.delete_all
+    GradeItem.delete_all
+    GradeResult.delete_all
+    Lti2Tc::ToolSetting.delete_all
 
     puts "load..."
     system "rake db:load"
-
-    puts "copy sqlite3 to closet/backups..."
-    system "cp db/development.sqlite3 data/tcsampleapp.sqlite3"
   end
 
   desc "Truncate the wirelog"
