@@ -13,6 +13,9 @@ namespace :init_task do
 
     puts "load..."
     system "rake db:load"
+
+    puts "copy sqlite3 to closet/backups..."
+    system "cp db/development.sqlite3 data/tcsampleapp.sqlite3"
   end
 
   desc "Truncate the wirelog"
